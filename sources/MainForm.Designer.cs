@@ -33,7 +33,6 @@
             this.tabPage0 = new System.Windows.Forms.TabPage();
             this.removeStudentButton = new System.Windows.Forms.Button();
             this.addStudentButton = new System.Windows.Forms.Button();
-            this.studentsListView = new System.Windows.Forms.ListView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -43,6 +42,7 @@
             this.saveFileButton = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.studentsListView = new System.Windows.Forms.BindableListView();
             this.mainTabControl.SuspendLayout();
             this.tabPage0.SuspendLayout();
             this.SuspendLayout();
@@ -63,9 +63,9 @@
             // 
             // tabPage0
             // 
+            this.tabPage0.Controls.Add(this.studentsListView);
             this.tabPage0.Controls.Add(this.removeStudentButton);
             this.tabPage0.Controls.Add(this.addStudentButton);
-            this.tabPage0.Controls.Add(this.studentsListView);
             this.tabPage0.Location = new System.Drawing.Point(4, 24);
             this.tabPage0.Name = "tabPage0";
             this.tabPage0.Padding = new System.Windows.Forms.Padding(3);
@@ -91,15 +91,6 @@
             this.addStudentButton.TabIndex = 2;
             this.addStudentButton.Text = "Добавить студента";
             this.addStudentButton.UseVisualStyleBackColor = true;
-            // 
-            // studentsListView
-            // 
-            this.studentsListView.HideSelection = false;
-            this.studentsListView.Location = new System.Drawing.Point(3, 3);
-            this.studentsListView.Name = "studentsListView";
-            this.studentsListView.Size = new System.Drawing.Size(589, 135);
-            this.studentsListView.TabIndex = 1;
-            this.studentsListView.UseCompatibleStateImageBehavior = false;
             // 
             // tabPage1
             // 
@@ -172,6 +163,18 @@
             // 
             this.openFileDialog.FileName = "openFileDialog1";
             // 
+            // studentsListView
+            // 
+            this.studentsListView.DataMember = null;
+            this.studentsListView.DataSource = null;
+            this.studentsListView.HideSelection = false;
+            this.studentsListView.Location = new System.Drawing.Point(4, 3);
+            this.studentsListView.Name = "studentsListView";
+            this.studentsListView.Size = new System.Drawing.Size(586, 136);
+            this.studentsListView.TabIndex = 0;
+            this.studentsListView.UseCompatibleStateImageBehavior = false;
+            this.studentsListView.View = System.Windows.Forms.View.List;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -205,9 +208,9 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.TabPage tabPage0;
-        private System.Windows.Forms.ListView studentsListView;
         private System.Windows.Forms.Button addStudentButton;
         private System.Windows.Forms.Button removeStudentButton;
+        private System.Windows.Forms.BindableListView studentsListView;
     }
 }
 
