@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VSU
+namespace VSU.Models
 {
     /// <summary>
     /// Представляет оценку.
