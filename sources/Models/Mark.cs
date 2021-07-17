@@ -5,7 +5,7 @@ namespace VSU.Models
     /// <summary>
     /// Представляет оценку.
     /// </summary>
-    struct Mark : IEquatable<Mark>, IComparable<Mark>
+    public struct Mark : IEquatable<Mark>, IComparable<Mark>
     {
         /// <summary>
         /// Значение оценки.

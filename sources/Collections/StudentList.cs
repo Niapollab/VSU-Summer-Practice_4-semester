@@ -3,7 +3,7 @@ using VSU.Models;
 
 namespace VSU.Collections
 {
-    class StudentList : BindingList<Student>
+    public class StudentList : BindingList<Student>
     {
 
     }

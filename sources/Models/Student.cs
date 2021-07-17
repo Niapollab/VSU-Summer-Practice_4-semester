@@ -6,7 +6,7 @@ namespace VSU.Models
     /// <summary>
     /// Представляет студента.
     /// </summary>
-    class Student : IEquatable<Student>
+    public class Student : IEquatable<Student>
     {
         /// <summary>
         /// Имя студента.

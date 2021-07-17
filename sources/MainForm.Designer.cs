@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.tabPage0 = new System.Windows.Forms.TabPage();
+            this.studentsListView = new System.Windows.Forms.BindableListView();
             this.removeStudentButton = new System.Windows.Forms.Button();
             this.addStudentButton = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -42,7 +43,6 @@
             this.saveFileButton = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.studentsListView = new System.Windows.Forms.BindableListView();
             this.mainTabControl.SuspendLayout();
             this.tabPage0.SuspendLayout();
             this.SuspendLayout();
@@ -74,8 +74,21 @@
             this.tabPage0.Text = "Список студентов";
             this.tabPage0.UseVisualStyleBackColor = true;
             // 
+            // studentsListView
+            // 
+            this.studentsListView.DataMember = null;
+            this.studentsListView.DataSource = null;
+            this.studentsListView.HideSelection = false;
+            this.studentsListView.Location = new System.Drawing.Point(4, 3);
+            this.studentsListView.Name = "studentsListView";
+            this.studentsListView.Size = new System.Drawing.Size(586, 136);
+            this.studentsListView.TabIndex = 0;
+            this.studentsListView.UseCompatibleStateImageBehavior = false;
+            this.studentsListView.View = System.Windows.Forms.View.List;
+            // 
             // removeStudentButton
             // 
+            this.removeStudentButton.Enabled = false;
             this.removeStudentButton.Location = new System.Drawing.Point(312, 145);
             this.removeStudentButton.Name = "removeStudentButton";
             this.removeStudentButton.Size = new System.Drawing.Size(278, 23);
@@ -162,18 +175,6 @@
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog1";
-            // 
-            // studentsListView
-            // 
-            this.studentsListView.DataMember = null;
-            this.studentsListView.DataSource = null;
-            this.studentsListView.HideSelection = false;
-            this.studentsListView.Location = new System.Drawing.Point(4, 3);
-            this.studentsListView.Name = "studentsListView";
-            this.studentsListView.Size = new System.Drawing.Size(586, 136);
-            this.studentsListView.TabIndex = 0;
-            this.studentsListView.UseCompatibleStateImageBehavior = false;
-            this.studentsListView.View = System.Windows.Forms.View.List;
             // 
             // MainForm
             // 
