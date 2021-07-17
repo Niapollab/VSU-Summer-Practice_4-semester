@@ -36,7 +36,7 @@ namespace VSU.Models
         public static implicit operator int(Mark mark)
             => mark._value;
 
-        public static explicit operator Mark(byte value)
+        public static implicit operator Mark(byte value)
             => new(value);
 
         public override bool Equals(object obj)
