@@ -19,12 +19,12 @@ namespace VSU.Collections
         /// <summary>
         /// Правила сравнения элементов при сортировке списка.
         /// </summary>
-        private Comparer<T> _comparer;
+        private readonly Comparer<T> _comparer;
 
         /// <summary>
         /// Правила сравнения элементов при поиске в списке.
         /// </summary>
-        private EqualityComparer<T> _equalityComparer;
+        private readonly EqualityComparer<T> _equalityComparer;
 
         /// <summary>
         /// Инициализирует класс односвязного линейного списка с сортировкой при добавлении элементов.
