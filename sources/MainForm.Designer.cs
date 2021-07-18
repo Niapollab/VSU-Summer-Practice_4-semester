@@ -191,6 +191,7 @@
             this.openFileButton.TabIndex = 4;
             this.openFileButton.Text = "Открыть файл";
             this.openFileButton.UseVisualStyleBackColor = true;
+            this.openFileButton.Click += new System.EventHandler(this.OpenFileButtonClick);
             // 
             // saveFileButton
             // 
@@ -200,10 +201,20 @@
             this.saveFileButton.TabIndex = 5;
             this.saveFileButton.Text = "Сохранить файл";
             this.saveFileButton.UseVisualStyleBackColor = true;
+            this.saveFileButton.Click += new System.EventHandler(this.SaveFileButtonClick);
             // 
             // openFileDialog
             // 
-            this.openFileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.DefaultExt = "json";
+            this.openFileDialog.FileName = "students";
+            this.openFileDialog.Filter = "JSON файл (*.json)|*.json|Все файлы (*.*)|*.*";
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.DefaultExt = "json";
+            this.saveFileDialog.FileName = "students";
+            this.saveFileDialog.Filter = "JSON файл (*.json)|*.json|Все файлы (*.*)|*.*";
+            this.saveFileDialog.RestoreDirectory = true;
             // 
             // MainForm
             // 

@@ -10,7 +10,7 @@ namespace VSU.Models
         /// <summary>
         /// Значение оценки.
         /// </summary>
-        readonly byte _value;
+        private readonly byte _value;
 
         /// <summary>
         /// Инициализирует оценку.
@@ -47,5 +47,23 @@ namespace VSU.Models
 
         public override string ToString()
             => _value.ToString();
+
+        public static bool operator ==(Mark left, Mark right)
+            => left.Equals(right);
+
+        public static bool operator !=(Mark left, Mark right)
+            => !(left == right);
+
+        public static bool operator <(Mark left, Mark right)
+            => left.CompareTo(right) < 0;
+
+        public static bool operator <=(Mark left, Mark right)
+            => left.CompareTo(right) <= 0;
+
+        public static bool operator >(Mark left, Mark right)
+            => left.CompareTo(right) > 0;
+
+        public static bool operator >=(Mark left, Mark right)
+            => left.CompareTo(right) >= 0;
     }
 }

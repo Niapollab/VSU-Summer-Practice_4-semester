@@ -55,7 +55,7 @@ namespace VSU
             catch (Exception ex)
             {
                 DialogResult = DialogResult.None;
-                MessageBox.Show(this, ex.Message, "Ошибка.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

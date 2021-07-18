@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace VSU.Models.DataLoader
 {
-    interface IStudentsDataLoader
+    public interface IStudentsDataLoader
     {
-        IEnumerable<Student> ReadStudents();
-        void SaveStudents(IEnumerable<Student> students);
+        Task<IEnumerable<Student>> ReadStudentsAsync(CancellationToken cancellationToken = default);
+        Task SaveStudentsAsync(IEnumerable<Student> students, CancellationToken cancellationToken = default);
     }
 }

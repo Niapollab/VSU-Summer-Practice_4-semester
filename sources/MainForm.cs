@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using VSU.Collections;
+using VSU.Models;
+using VSU.Models.DataLoader;
 
 namespace VSU
 {
@@ -49,6 +52,53 @@ namespace VSU
         {
             if (e.KeyData == Keys.Delete)
                 removeStudentButton.PerformClick();
+        }
+
+        private async void OpenFileButtonClick(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                var loader = new StudentsJSONDataLoader(openFileDialog.FileName);
+                
+                try
+                {
+                    Enabled = false;
+                    IEnumerable<Student> students = await loader.ReadStudentsAsync();
+                    _list.Clear();
+                    foreach (Student student in students)
+                        _list.Add(student);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    Enabled = true;
+                }
+            }
+        }
+
+        private async void SaveFileButtonClick(object sender, EventArgs e)
+        {
+            if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                var loader = new StudentsJSONDataLoader(saveFileDialog.FileName);
+
+                try
+                {
+                    Enabled = false;
+                    await loader.SaveStudentsAsync(_list);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    Enabled = true;
+                }
+            }
         }
     }
 }

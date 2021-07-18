@@ -1,46 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace VSU.Models.DataLoader
 {
-    class StudentsJSONDataLoader : IStudentsDataLoader
+    public class StudentsJSONDataLoader : IStudentsDataLoader
     {
         private string Filename { get; }
 
         public StudentsJSONDataLoader(string filename)
+            => Filename = filename;
+
+        public async Task<IEnumerable<Student>> ReadStudentsAsync(CancellationToken cancellationToken = default)
         {
-            Filename = filename;
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new MarksCollectionConverter());
+            using var fs = new FileStream(Filename, FileMode.Open, FileAccess.Read, FileShare.Read);
+            return await JsonSerializer.DeserializeAsync<Student[]>(fs, options, cancellationToken: cancellationToken);
         }
 
-        public IEnumerable<Student> ReadStudents()
+        public async Task SaveStudentsAsync(IEnumerable<Student> students, CancellationToken cancellationToken = default)
         {
-            if (File.Exists(Filename))
-            {
-                try
-                {
-                    return JsonSerializer.Deserialize<Student[]>(File.ReadAllText(Filename));
-                }
-                catch
-                {
-
-                }
-            }
-            return Array.Empty<Student>();
-        }
-
-        public void SaveStudents(IEnumerable<Student> students)
-        {
-            try
-            {
-                File.WriteAllText(Filename, JsonSerializer.Serialize(students.ToArray()));
-            }
-            catch
-            {
-
-            }
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new MarksCollectionConverter());
+            using var fs = new FileStream(Filename, FileMode.Create, FileAccess.Write, FileShare.Read);
+            await JsonSerializer.SerializeAsync(fs, students.ToArray(), options, cancellationToken: cancellationToken);
         }
     }
 }

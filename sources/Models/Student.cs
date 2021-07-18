@@ -77,11 +77,11 @@ namespace VSU.Models
         /// <param name="firstName">Имя студента.</param>
         /// <param name="secondName">Фамилия студента.</param>
         /// <param name="marks">Отчество студента.</param>
-        public Student(string firstName, string secondName, MarkCollection markCollection)
+        public Student(string firstName, string secondName, MarkCollection marks)
         {
             _firstName = firstName;
             _secondName = secondName;
-            _marks = markCollection;
+            _marks = marks;
         }
 
         public bool Equals(Student other)
