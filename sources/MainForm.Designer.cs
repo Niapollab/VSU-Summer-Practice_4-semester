@@ -32,8 +32,8 @@
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.tabPage0 = new System.Windows.Forms.TabPage();
             this.studentsListView = new System.Windows.Forms.BindableListView();
-            this.secondnameColumn = new System.Windows.Forms.ColumnHeader();
             this.nameColumn = new System.Windows.Forms.ColumnHeader();
+            this.secondnameColumn = new System.Windows.Forms.ColumnHeader();
             this.marksColumn = new System.Windows.Forms.ColumnHeader();
             this.removeStudentButton = new System.Windows.Forms.Button();
             this.addStudentButton = new System.Windows.Forms.Button();
@@ -79,6 +79,7 @@
             // 
             // studentsListView
             // 
+            this.studentsListView.AutoArrange = false;
             this.studentsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameColumn,
             this.secondnameColumn,
@@ -88,24 +89,29 @@
             this.studentsListView.FullRowSelect = true;
             this.studentsListView.HideSelection = false;
             this.studentsListView.Location = new System.Drawing.Point(4, 3);
+            this.studentsListView.MultiSelect = false;
             this.studentsListView.Name = "studentsListView";
             this.studentsListView.Size = new System.Drawing.Size(586, 136);
             this.studentsListView.TabIndex = 0;
             this.studentsListView.UseCompatibleStateImageBehavior = false;
             this.studentsListView.View = System.Windows.Forms.View.Details;
+            this.studentsListView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StudentsListKeyDown);
             this.studentsListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.StudentsListDoubleClick);
-            // 
-            // secondnameColumn
-            // 
-            this.secondnameColumn.Text = "Фамилия";
             // 
             // nameColumn
             // 
             this.nameColumn.Text = "Имя";
+            this.nameColumn.Width = 100;
+            // 
+            // secondnameColumn
+            // 
+            this.secondnameColumn.Text = "Фамилия";
+            this.secondnameColumn.Width = 100;
             // 
             // marksColumn
             // 
             this.marksColumn.Text = "Оценки";
+            this.marksColumn.Width = 382;
             // 
             // removeStudentButton
             // 

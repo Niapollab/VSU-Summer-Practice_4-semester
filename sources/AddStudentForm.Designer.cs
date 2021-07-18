@@ -85,15 +85,18 @@ namespace VSU
             this.marksTextBox.Name = "marksTextBox";
             this.marksTextBox.Size = new System.Drawing.Size(232, 23);
             this.marksTextBox.TabIndex = 5;
+            this.marksTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MarksTextBoxKeyPressed);
             // 
             // saveButton
             // 
+            this.saveButton.Enabled = false;
             this.saveButton.Location = new System.Drawing.Point(12, 105);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(396, 23);
             this.saveButton.TabIndex = 6;
             this.saveButton.Text = "Сохранить";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.SaveButtonClicked);
             // 
             // AddStudentForm
             // 
@@ -112,7 +115,6 @@ namespace VSU
             this.MinimizeBox = false;
             this.Name = "AddStudentForm";
             this.Text = "Информация о студенте";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SaveFormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

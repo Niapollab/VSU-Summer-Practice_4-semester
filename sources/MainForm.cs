@@ -26,9 +26,7 @@ namespace VSU
         {
             var dialog = new AddStudentForm();
             if (dialog.ShowDialog(this) == DialogResult.OK)
-            {
-
-            }
+                _list.Add(dialog.Student);
         }
 
         private void RemoveStudentButtonClick(object sender, EventArgs e)
@@ -42,8 +40,15 @@ namespace VSU
 
         private void StudentsListDoubleClick(object sender, MouseEventArgs e)
         {
-            ListViewItem item = studentsListView.HitTest(e.X, e.Y).Item;
+            int index = studentsListView.HitTest(e.X, e.Y).Item.Index;
+            var dialog = new AddStudentForm(_list[index]);
+            dialog.ShowDialog(this);
+        }
 
+        private void StudentsListKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Delete)
+                removeStudentButton.PerformClick();
         }
     }
 }

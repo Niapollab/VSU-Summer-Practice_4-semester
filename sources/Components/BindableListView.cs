@@ -243,7 +243,6 @@ namespace System.Windows.Forms
         }
         private CurrencyManager _currencyManager;
         private IBindingList _bindingList;
-        private readonly PropertyDescriptorCollection _properties;
 
         // Reload list items from the data source.
         private void LoadItemsFromSource()
