@@ -17,9 +17,9 @@ namespace VSU.Models
         /// </summary>
         public string SecondName { get; set; }
         /// <summary>
-        /// Отчество студента.
+        /// Оценки студента.
         /// </summary>
-        public Mark[] Marks { get; }
+        public MarkCollection Marks { get; set; }
 
         /// <summary>
         /// Инициализирует студента.
@@ -31,14 +31,14 @@ namespace VSU.Models
         {
             FirstName = firstName;
             SecondName = secondName;
-            Marks = marks;
+            Marks = new MarkCollection(marks);
         }
 
         public bool Equals(Student other)
         {
-            if (other != null && FirstName == other.FirstName && SecondName == other.SecondName && Marks.Length == other.Marks.Length)
+            if (other != null && FirstName == other.FirstName && SecondName == other.SecondName && Marks.Count == other.Marks.Count)
             {
-                for (var i = 0; i < Marks.Length; ++i)
+                for (var i = 0; i < Marks.Count; ++i)
                     if (Marks[i] != other.Marks[i])
                         return false;
                 

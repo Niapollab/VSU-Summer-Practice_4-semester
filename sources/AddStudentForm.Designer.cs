@@ -1,5 +1,5 @@
 ﻿
-namespace VSU.sources
+namespace VSU
 {
     partial class AddStudentForm
     {
@@ -29,89 +29,90 @@ namespace VSU.sources
         /// </summary>
         private void InitializeComponent()
         {
-            this.NameLabel = new System.Windows.Forms.Label();
-            this.SecondnameLabel = new System.Windows.Forms.Label();
-            this.MarksLabel = new System.Windows.Forms.Label();
-            this.NameTextBox = new System.Windows.Forms.TextBox();
-            this.SecondnameTextBox = new System.Windows.Forms.TextBox();
-            this.MarksTextBox = new System.Windows.Forms.TextBox();
-            this.SaveButton = new System.Windows.Forms.Button();
+            this.nameLabel = new System.Windows.Forms.Label();
+            this.secondnameLabel = new System.Windows.Forms.Label();
+            this.marksLabel = new System.Windows.Forms.Label();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.secondnameTextBox = new System.Windows.Forms.TextBox();
+            this.marksTextBox = new System.Windows.Forms.TextBox();
+            this.saveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // NameLabel
+            // nameLabel
             // 
-            this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(12, 9);
-            this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(34, 15);
-            this.NameLabel.TabIndex = 0;
-            this.NameLabel.Text = "Имя:";
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Location = new System.Drawing.Point(12, 9);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(34, 15);
+            this.nameLabel.TabIndex = 0;
+            this.nameLabel.Text = "Имя:";
             // 
-            // SecondnameLabel
+            // secondnameLabel
             // 
-            this.SecondnameLabel.AutoSize = true;
-            this.SecondnameLabel.Location = new System.Drawing.Point(12, 42);
-            this.SecondnameLabel.Name = "SecondnameLabel";
-            this.SecondnameLabel.Size = new System.Drawing.Size(61, 15);
-            this.SecondnameLabel.TabIndex = 1;
-            this.SecondnameLabel.Text = "Фамилия:";
+            this.secondnameLabel.AutoSize = true;
+            this.secondnameLabel.Location = new System.Drawing.Point(12, 42);
+            this.secondnameLabel.Name = "secondnameLabel";
+            this.secondnameLabel.Size = new System.Drawing.Size(61, 15);
+            this.secondnameLabel.TabIndex = 1;
+            this.secondnameLabel.Text = "Фамилия:";
             // 
-            // MarksLabel
+            // marksLabel
             // 
-            this.MarksLabel.AutoSize = true;
-            this.MarksLabel.Location = new System.Drawing.Point(12, 76);
-            this.MarksLabel.Name = "MarksLabel";
-            this.MarksLabel.Size = new System.Drawing.Size(142, 15);
-            this.MarksLabel.TabIndex = 2;
-            this.MarksLabel.Text = "Оценки (через запятую):";
+            this.marksLabel.AutoSize = true;
+            this.marksLabel.Location = new System.Drawing.Point(12, 76);
+            this.marksLabel.Name = "marksLabel";
+            this.marksLabel.Size = new System.Drawing.Size(142, 15);
+            this.marksLabel.TabIndex = 2;
+            this.marksLabel.Text = "Оценки (через запятую):";
             // 
-            // NameTextBox
+            // nameTextBox
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(176, 6);
-            this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(232, 23);
-            this.NameTextBox.TabIndex = 3;
+            this.nameTextBox.Location = new System.Drawing.Point(176, 6);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(232, 23);
+            this.nameTextBox.TabIndex = 3;
             // 
-            // SecondnameTextBox
+            // secondnameTextBox
             // 
-            this.SecondnameTextBox.Location = new System.Drawing.Point(176, 39);
-            this.SecondnameTextBox.Name = "SecondnameTextBox";
-            this.SecondnameTextBox.Size = new System.Drawing.Size(232, 23);
-            this.SecondnameTextBox.TabIndex = 4;
+            this.secondnameTextBox.Location = new System.Drawing.Point(176, 39);
+            this.secondnameTextBox.Name = "secondnameTextBox";
+            this.secondnameTextBox.Size = new System.Drawing.Size(232, 23);
+            this.secondnameTextBox.TabIndex = 4;
             // 
-            // MarksTextBox
+            // marksTextBox
             // 
-            this.MarksTextBox.Location = new System.Drawing.Point(176, 73);
-            this.MarksTextBox.Name = "MarksTextBox";
-            this.MarksTextBox.Size = new System.Drawing.Size(232, 23);
-            this.MarksTextBox.TabIndex = 5;
+            this.marksTextBox.Location = new System.Drawing.Point(176, 73);
+            this.marksTextBox.Name = "marksTextBox";
+            this.marksTextBox.Size = new System.Drawing.Size(232, 23);
+            this.marksTextBox.TabIndex = 5;
             // 
-            // SaveButton
+            // saveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(12, 105);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(396, 23);
-            this.SaveButton.TabIndex = 6;
-            this.SaveButton.Text = "Сохранить";
-            this.SaveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Location = new System.Drawing.Point(12, 105);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(396, 23);
+            this.saveButton.TabIndex = 6;
+            this.saveButton.Text = "Сохранить";
+            this.saveButton.UseVisualStyleBackColor = true;
             // 
             // AddStudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(420, 137);
-            this.Controls.Add(this.SaveButton);
-            this.Controls.Add(this.MarksTextBox);
-            this.Controls.Add(this.SecondnameTextBox);
-            this.Controls.Add(this.NameTextBox);
-            this.Controls.Add(this.MarksLabel);
-            this.Controls.Add(this.SecondnameLabel);
-            this.Controls.Add(this.NameLabel);
+            this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.marksTextBox);
+            this.Controls.Add(this.secondnameTextBox);
+            this.Controls.Add(this.nameTextBox);
+            this.Controls.Add(this.marksLabel);
+            this.Controls.Add(this.secondnameLabel);
+            this.Controls.Add(this.nameLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddStudentForm";
             this.Text = "Информация о студенте";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SaveFormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,12 +120,12 @@ namespace VSU.sources
 
         #endregion
 
-        private System.Windows.Forms.Label NameLabel;
-        private System.Windows.Forms.Label SecondnameLabel;
-        private System.Windows.Forms.Label MarksLabel;
-        private System.Windows.Forms.TextBox NameTextBox;
-        private System.Windows.Forms.TextBox SecondnameTextBox;
-        private System.Windows.Forms.TextBox MarksTextBox;
-        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Label nameLabel;
+        private System.Windows.Forms.Label secondnameLabel;
+        private System.Windows.Forms.Label marksLabel;
+        private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.TextBox secondnameTextBox;
+        private System.Windows.Forms.TextBox marksTextBox;
+        private System.Windows.Forms.Button saveButton;
     }
 }

@@ -32,6 +32,9 @@
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.tabPage0 = new System.Windows.Forms.TabPage();
             this.studentsListView = new System.Windows.Forms.BindableListView();
+            this.secondnameColumn = new System.Windows.Forms.ColumnHeader();
+            this.nameColumn = new System.Windows.Forms.ColumnHeader();
+            this.marksColumn = new System.Windows.Forms.ColumnHeader();
             this.removeStudentButton = new System.Windows.Forms.Button();
             this.addStudentButton = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -76,15 +79,33 @@
             // 
             // studentsListView
             // 
+            this.studentsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.nameColumn,
+            this.secondnameColumn,
+            this.marksColumn});
             this.studentsListView.DataMember = null;
             this.studentsListView.DataSource = null;
+            this.studentsListView.FullRowSelect = true;
             this.studentsListView.HideSelection = false;
             this.studentsListView.Location = new System.Drawing.Point(4, 3);
             this.studentsListView.Name = "studentsListView";
             this.studentsListView.Size = new System.Drawing.Size(586, 136);
             this.studentsListView.TabIndex = 0;
             this.studentsListView.UseCompatibleStateImageBehavior = false;
-            this.studentsListView.View = System.Windows.Forms.View.List;
+            this.studentsListView.View = System.Windows.Forms.View.Details;
+            this.studentsListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.StudentsListDoubleClick);
+            // 
+            // secondnameColumn
+            // 
+            this.secondnameColumn.Text = "Фамилия";
+            // 
+            // nameColumn
+            // 
+            this.nameColumn.Text = "Имя";
+            // 
+            // marksColumn
+            // 
+            this.marksColumn.Text = "Оценки";
             // 
             // removeStudentButton
             // 
@@ -95,6 +116,7 @@
             this.removeStudentButton.TabIndex = 3;
             this.removeStudentButton.Text = "Удалить студента";
             this.removeStudentButton.UseVisualStyleBackColor = true;
+            this.removeStudentButton.Click += new System.EventHandler(this.RemoveStudentButtonClick);
             // 
             // addStudentButton
             // 
@@ -104,6 +126,7 @@
             this.addStudentButton.TabIndex = 2;
             this.addStudentButton.Text = "Добавить студента";
             this.addStudentButton.UseVisualStyleBackColor = true;
+            this.addStudentButton.Click += new System.EventHandler(this.AddStudentButtonClick);
             // 
             // tabPage1
             // 
@@ -212,6 +235,9 @@
         private System.Windows.Forms.Button addStudentButton;
         private System.Windows.Forms.Button removeStudentButton;
         private System.Windows.Forms.BindableListView studentsListView;
+        private System.Windows.Forms.ColumnHeader secondnameColumn;
+        private System.Windows.Forms.ColumnHeader nameColumn;
+        private System.Windows.Forms.ColumnHeader marksColumn;
     }
 }
 

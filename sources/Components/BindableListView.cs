@@ -181,7 +181,6 @@ namespace System.Windows.Forms
                 }
 
                 // Now see if anything has changed since we last bound to a source.
-                var reloadMetaData = false;
                 var reloadItems = false;
                 if (currencyManager != _currencyManager)
                 {
@@ -208,7 +207,6 @@ namespace System.Windows.Forms
                     _currencyManager = currencyManager;
                     if (currencyManager != null)
                     {
-                        reloadMetaData = true;
                         reloadItems = true;
                         currencyManager.MetaDataChanged += new EventHandler(MetaDataChanged);
                         currencyManager.PositionChanged += new EventHandler(PositionChanged);
@@ -237,11 +235,6 @@ namespace System.Windows.Forms
                     }
                 }
 
-                // If a change occurred that means the set of properties may
-                // have changed, reload these.
-                if (reloadMetaData)
-                    LoadColumnsFromSource();
-
                 // If a change occurred that means the set of items to be
                 // shown in the list may have changed, reload those.
                 if (reloadItems)
@@ -250,38 +243,7 @@ namespace System.Windows.Forms
         }
         private CurrencyManager _currencyManager;
         private IBindingList _bindingList;
-        private PropertyDescriptorCollection _properties;
-
-        // Reload the properties, and build column headers for them.
-        private void LoadColumnsFromSource()
-        {
-            // Retrieve and store the PropertyDescriptors. (We always go
-            // via PropertyDescriptors when binding, and not the Reflection
-            // API - this allows generic data sources to decide at runtime
-            // what properties to present.) For data sources that don't opt
-            // to have dynamic properties, the PropertyDescriptor mechanism
-            // automatically falls back to Reflection under the covers.
-            _properties = _currencyManager.GetItemProperties();
-
-            // Build new column headers for the ListView.
-            Columns.Clear();
-            for (int column = 0; column < _properties.Count; ++column)
-            {
-                string columnName = _properties[column].Name;
-
-                // We set the width to be -2 in order to auto-size the column
-                // to the header text. Bizarrely, this only works if we set
-                // the width after adding the column. (That's we we're not
-                // simply passing -2 to Add. The value passed - 0 in this case
-                // - is irrelevant here.)
-                Columns.Add(columnName, 0, HorizontalAlignment.Left);
-                Columns[column].Width = -2;
-            }
-            // For some reason we seem to need to go back and set the
-            // first column's Width to -2 (auto width) a second time.
-            // It doesn't stick first time.
-            Columns[0].Width = -2;
-        }
+        private readonly PropertyDescriptorCollection _properties;
 
         // Reload list items from the data source.
         private void LoadItemsFromSource()
@@ -326,13 +288,16 @@ namespace System.Windows.Forms
         // updating individual items.)
         private ListViewItem BuildItemForRow(object row)
         {
-            string[] itemText = new string[_properties.Count];
+            var _properties = _currencyManager.GetItemProperties();
+
+            string[] itemText = new string[Columns.Count];
             for (int column = 0; column < itemText.Length; ++column)
             {
                 // Use the PropertyDescriptors to extract the property value -
                 // this might be a virtual property.
                 itemText[column] = _properties[column].GetValue(row).ToString();
             }
+
             return new ListViewItem(itemText);
         }
 
@@ -401,7 +366,6 @@ namespace System.Windows.Forms
                 case ListChangedType.PropertyDescriptorAdded:
                 case ListChangedType.PropertyDescriptorChanged:
                 case ListChangedType.PropertyDescriptorDeleted:
-                    LoadColumnsFromSource();
                     LoadItemsFromSource();
                     break;
             }
@@ -411,7 +375,6 @@ namespace System.Windows.Forms
         // different. We just reload everything.
         private void MetaDataChanged(object sender, EventArgs e)
         {
-            LoadColumnsFromSource();
             LoadItemsFromSource();
         }
 
@@ -426,6 +389,12 @@ namespace System.Windows.Forms
         // know!)
         private void SetSelectedIndex(int index)
         {
+            if (index < 0)
+            {
+                SelectedItems.Clear();
+                return;
+            }
+
             // Avoid recursion - we keep track of when we're already in the
             // middle of changing the index, in case the CurrencyManager
             // decides to call us back as a result of a change already in
@@ -510,7 +479,6 @@ namespace System.Windows.Forms
                             new ListChangedEventHandler(ListChanged);
                     }
                 }
-                LoadItemsFromSource();
             }
         }
     }

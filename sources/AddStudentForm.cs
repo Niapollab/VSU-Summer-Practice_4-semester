@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VSU.Models;
 
-namespace VSU.sources
+namespace VSU
 {
     public partial class AddStudentForm : Form
     {
@@ -19,6 +19,20 @@ namespace VSU.sources
         {
             InitializeComponent();
             _student = student;
+
+            SetBoxes();
+        }
+
+        private void SaveFormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
+
+        private void SetBoxes()
+        {
+            nameTextBox.Text = _student?.FirstName ?? "";
+            secondnameTextBox.Text = _student?.SecondName ?? "";
+            marksTextBox.Text = _student?.Marks?.ToString() ?? "";
         }
     }
 }
