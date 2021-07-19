@@ -12,7 +12,7 @@ namespace VSU
 
         public Student Student { get; }
 
-        public AddStudentForm(Student student = null)
+        public AddStudentForm(Student student = default)
         {
             InitializeComponent();
             DialogResult = DialogResult.None;

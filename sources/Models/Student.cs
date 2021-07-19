@@ -86,7 +86,7 @@ namespace VSU.Models
 
         public bool Equals(Student other)
         {
-            if (other != null && _firstName == other._firstName && _secondName == other._secondName && _marks.Count == other._marks.Count)
+            if (other != default && _firstName == other._firstName && _secondName == other._secondName && _marks.Count == other._marks.Count)
             {
                 for (var i = 0; i < _marks.Count; ++i)
                     if (_marks[i] != other._marks[i])

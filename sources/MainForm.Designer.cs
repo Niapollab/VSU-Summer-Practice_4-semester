@@ -38,7 +38,15 @@
             this.removeStudentButton = new System.Windows.Forms.Button();
             this.addStudentButton = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dynamicChain1View = new System.Windows.Forms.ListView();
+            this.nameColumnDC1 = new System.Windows.Forms.ColumnHeader();
+            this.secondnameColumnC2 = new System.Windows.Forms.ColumnHeader();
+            this.marksColumnDC1 = new System.Windows.Forms.ColumnHeader();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dynamicChain2View = new System.Windows.Forms.ListView();
+            this.nameColumnDC2 = new System.Windows.Forms.ColumnHeader();
+            this.secondnameColumnDC2 = new System.Windows.Forms.ColumnHeader();
+            this.marksColumnDC2 = new System.Windows.Forms.ColumnHeader();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -48,6 +56,8 @@
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.mainTabControl.SuspendLayout();
             this.tabPage0.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTabControl
@@ -63,6 +73,7 @@
             this.mainTabControl.SelectedIndex = 0;
             this.mainTabControl.Size = new System.Drawing.Size(603, 206);
             this.mainTabControl.TabIndex = 0;
+            this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.MainTabIndexChanged);
             // 
             // tabPage0
             // 
@@ -136,6 +147,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.dynamicChain1View);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -144,8 +156,39 @@
             this.tabPage1.Text = "Динамическая цепочка 1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // dynamicChain1View
+            // 
+            this.dynamicChain1View.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.nameColumnDC1,
+            this.secondnameColumnC2,
+            this.marksColumnDC1});
+            this.dynamicChain1View.FullRowSelect = true;
+            this.dynamicChain1View.HideSelection = false;
+            this.dynamicChain1View.Location = new System.Drawing.Point(3, 3);
+            this.dynamicChain1View.Name = "dynamicChain1View";
+            this.dynamicChain1View.Size = new System.Drawing.Size(589, 172);
+            this.dynamicChain1View.TabIndex = 0;
+            this.dynamicChain1View.UseCompatibleStateImageBehavior = false;
+            this.dynamicChain1View.View = System.Windows.Forms.View.Details;
+            // 
+            // nameColumnDC1
+            // 
+            this.nameColumnDC1.Text = "Имя";
+            this.nameColumnDC1.Width = 100;
+            // 
+            // secondnameColumnC2
+            // 
+            this.secondnameColumnC2.Text = "Фамилия";
+            this.secondnameColumnC2.Width = 100;
+            // 
+            // marksColumnDC1
+            // 
+            this.marksColumnDC1.Text = "Средний балл";
+            this.marksColumnDC1.Width = 382;
+            // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.dynamicChain2View);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -153,6 +196,36 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Динамическая цепочка 2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dynamicChain2View
+            // 
+            this.dynamicChain2View.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.nameColumnDC2,
+            this.secondnameColumnDC2,
+            this.marksColumnDC2});
+            this.dynamicChain2View.FullRowSelect = true;
+            this.dynamicChain2View.HideSelection = false;
+            this.dynamicChain2View.Location = new System.Drawing.Point(3, 3);
+            this.dynamicChain2View.Name = "dynamicChain2View";
+            this.dynamicChain2View.Size = new System.Drawing.Size(589, 172);
+            this.dynamicChain2View.TabIndex = 1;
+            this.dynamicChain2View.UseCompatibleStateImageBehavior = false;
+            this.dynamicChain2View.View = System.Windows.Forms.View.Details;
+            // 
+            // nameColumnDC2
+            // 
+            this.nameColumnDC2.Text = "Имя";
+            this.nameColumnDC2.Width = 100;
+            // 
+            // secondnameColumnDC2
+            // 
+            this.secondnameColumnDC2.Text = "Фамилия";
+            this.secondnameColumnDC2.Width = 100;
+            // 
+            // marksColumnDC2
+            // 
+            this.marksColumnDC2.Text = "Средний балл";
+            this.marksColumnDC2.Width = 382;
             // 
             // tabPage3
             // 
@@ -232,6 +305,8 @@
             this.Text = "Летняя практика ВГУ (4 семестр)";
             this.mainTabControl.ResumeLayout(false);
             this.tabPage0.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -255,6 +330,14 @@
         private System.Windows.Forms.ColumnHeader secondnameColumn;
         private System.Windows.Forms.ColumnHeader nameColumn;
         private System.Windows.Forms.ColumnHeader marksColumn;
+        private System.Windows.Forms.ListView dynamicChain1View;
+        private System.Windows.Forms.ColumnHeader nameColumnDC1;
+        private System.Windows.Forms.ColumnHeader secondnameColumnC2;
+        private System.Windows.Forms.ColumnHeader marksColumnDC1;
+        private System.Windows.Forms.ListView dynamicChain2View;
+        private System.Windows.Forms.ColumnHeader nameColumnDC2;
+        private System.Windows.Forms.ColumnHeader secondnameColumnDC2;
+        private System.Windows.Forms.ColumnHeader marksColumnDC2;
     }
 }
 

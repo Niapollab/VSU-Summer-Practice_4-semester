@@ -58,7 +58,7 @@ namespace System.Windows.Forms
                 if (_dataSource != value)
                 {
                     // Must be either a list or a list source
-                    if (value != null && value is not IList && value is not IListSource)
+                    if (value != default && value is not IList && value is not IListSource)
                         throw new ArgumentException("Data source must be IList or IListSource");
 
                     _dataSource = value;
@@ -166,17 +166,17 @@ namespace System.Windows.Forms
             // control. (OnParentBindingContextChanged will be called when
             // that happens, so this method will run again. This means it's
             // OK to ignore this call when we don't yet have a BindingContext.)
-            if (BindingContext != null)
+            if (BindingContext != default)
             {
                 // Obtain the CurrencyManager and (if available) IBindingList
                 // for the current data source.
-                CurrencyManager currencyManager = null;
-                IBindingList bindingList = null;
+                CurrencyManager currencyManager = default;
+                IBindingList bindingList = default;
 
-                if (DataSource != null)
+                if (DataSource != default)
                 {
                     currencyManager = (CurrencyManager)BindingContext[DataSource, DataMember];
-                    if (currencyManager != null)
+                    if (currencyManager != default)
                         bindingList = currencyManager.List as IBindingList;
                 }
 
@@ -189,7 +189,7 @@ namespace System.Windows.Forms
                     // first time we've seen one), we'll have some event
                     // handlers attached to the old one, so first we must
                     // detach those.
-                    if (_currencyManager != null)
+                    if (_currencyManager != default)
                     {
                         currencyManager.MetaDataChanged -= new EventHandler(MetaDataChanged);
                         currencyManager.PositionChanged -= new EventHandler(PositionChanged);
@@ -205,7 +205,7 @@ namespace System.Windows.Forms
                     // is replaced with a new object), or even changes in the
                     // set of properties.
                     _currencyManager = currencyManager;
-                    if (currencyManager != null)
+                    if (currencyManager != default)
                     {
                         reloadItems = true;
                         currencyManager.MetaDataChanged += new EventHandler(MetaDataChanged);
@@ -218,7 +218,7 @@ namespace System.Windows.Forms
                 {
                     // The IBindingList has changed. If we were previously
                     // bound to an IBindingList, detach the event handler.
-                    if (_bindingList != null)
+                    if (_bindingList != default)
                         _bindingList.ListChanged -= new ListChangedEventHandler(ListChanged);
 
                     // Now hook up a handler to the new IBindingList - this
@@ -228,7 +228,7 @@ namespace System.Windows.Forms
                     // know when the list is replaced completely is when the
                     // CurrencyManager raises the ItemChanged event.)
                     _bindingList = bindingList;
-                    if (bindingList != null)
+                    if (bindingList != default)
                     {
                         reloadItems = true;
                         bindingList.ListChanged += new ListChangedEventHandler(ListChanged);
@@ -434,7 +434,7 @@ namespace System.Windows.Forms
             // when transitioning to the 'no items selected' state), and we
             // definitely do have a CurrencyManager (i.e. we are actually bound
             // to a data source), then we notify the CurrencyManager.
-            if (!_changingIndex && SelectedIndices.Count > 0 && _currencyManager != null)
+            if (!_changingIndex && SelectedIndices.Count > 0 && _currencyManager != default)
                 _currencyManager.Position = SelectedIndices[0];
         }
 
@@ -472,7 +472,7 @@ namespace System.Windows.Forms
                     _bindingList.ListChanged -=
                         new ListChangedEventHandler(ListChanged);
                     _bindingList = _currencyManager.List as IBindingList;
-                    if (_bindingList != null)
+                    if (_bindingList != default)
                     {
                         _bindingList.ListChanged +=
                             new ListChangedEventHandler(ListChanged);

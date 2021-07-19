@@ -4,20 +4,30 @@ using System.Windows.Forms;
 using VSU.Collections;
 using VSU.Models;
 using VSU.Models.DataLoader;
+using VSU.Tasks;
+using VSU.Utils;
 
 namespace VSU
 {
     public partial class MainForm : Form
     {
+        private readonly ITaskConfigure<Student>[] _configures;
+        private readonly CachedStateManager _cachePolicy;
         private readonly StudentList _list;
 
         public MainForm()
         {
             InitializeComponent();
+            _cachePolicy = new CachedStateManager();
             _list = new StudentList();
+            _configures = new[]
+            {
+                new DynamicList1ViewConfigurer(_cachePolicy.DynamicList1, dynamicChain1View)
+            };    
             studentsListView.DataSource = _list;
             _list.ListChanged += (s, e) =>
             {
+                _cachePolicy.UncacheAll();
                 if (e.ListChangedType == System.ComponentModel.ListChangedType.ItemAdded)
                     removeStudentButton.Enabled = true;
                 else if (_list.Count < 1)
@@ -99,6 +109,34 @@ namespace VSU
                     Enabled = true;
                 }
             }
+        }
+
+        private void MainTabIndexChanged(object sender, EventArgs e)
+        {
+            if (sender is not TabControl tabControl
+                || tabControl.SelectedIndex < 1
+                || tabControl.SelectedIndex > 5)
+                return;
+
+            switch (tabControl.SelectedIndex)
+            {
+                case 1:
+                    _configures[tabControl.SelectedIndex - 1].Configure(_list);
+                    break;
+                case 2:
+                    
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+
+                    break;
+                case 5:
+
+                    break;
+            }
+
         }
     }
 }
