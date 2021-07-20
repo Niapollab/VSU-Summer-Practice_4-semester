@@ -5,26 +5,50 @@ using System.Linq;
 
 namespace VSU.Collections
 {
+    /// <summary>
+    /// Представляет класс бинарного дерева.
+    /// </summary>
+    /// <typeparam name="T">Тип элемента.</typeparam>
     public sealed partial class BinaryTree<T> : ICollection<T>
     {
+        /// <summary>
+        /// Корень.
+        /// </summary>
         private BinaryTreeNode _root;
 
+        /// <summary>
+        /// Правило сравнения элементов.
+        /// </summary>
         private readonly Comparer<T> _comparer;
 
         public int Count { get; private set; }
 
         public bool IsReadOnly => false;
 
+        /// <summary>
+        /// Корень.
+        /// </summary>
         public ITreeNode<T> Root => _root;
 
+        /// <summary>
+        /// Является ли дерево пустым.
+        /// </summary>
         public bool IsEmpty => _root == null;
 
+        /// <summary>
+        /// Инициализирует класс бинарного дерева.
+        /// </summary>
+        /// <param name="comparer">Правило сравнения элементов.</param>
         public BinaryTree(Comparer<T> comparer = null)
         {
             _comparer = comparer ?? Comparer<T>.Default;
             Clear();
         }
 
+        /// <summary>
+        /// Инициализирует класс бинарного дерева.
+        /// </summary>
+        /// <param name="comparison">Правило сравнения элементов.</param>
         public BinaryTree(Comparison<T> comparison) : this(Comparer<T>.Create(comparison))
         {
 
@@ -41,9 +65,15 @@ namespace VSU.Collections
             Count = 0;
             _root = null;
         }
+
         public bool Contains(T item)
            => Find(item) != null;
 
+        /// <summary>
+        /// Выполняет поиск узла в дереве и возвращает его, если оно найдено. Во всех остальных случаях возвращает null.
+        /// </summary>
+        /// <param name="item">Элемент.</param>
+        /// <returns>Узел в дереве.</returns>
         public ITreeNode<T> Find(T item)
         {
             BinaryTreeNode currentNode = _root;
@@ -64,6 +94,12 @@ namespace VSU.Collections
             return null;
         }
 
+        /// <summary>
+        /// Выполянет вставку в дерево.
+        /// </summary>
+        /// <param name="node">Текущее рассматриваемое поддерево.</param>
+        /// <param name="item">Элемент для вставки.</param>
+        /// <returns>Узел, который теперь является головным.</returns>
         private BinaryTreeNode Insert(BinaryTreeNode node, T item)
         {
             if (node == null)
@@ -92,6 +128,10 @@ namespace VSU.Collections
                 array[arrayIndex++] = element;
         }
 
+        /// <summary>
+        /// Перечисляет все узлы дерева в порядке их возрастания относительно правила сравнения.
+        /// </summary>
+        /// <returns>Перечисление всех узлов.</returns>
         private IEnumerable<BinaryTreeNode> EnumerateAllNodes()
         {
             if (!IsEmpty)
@@ -131,6 +171,12 @@ namespace VSU.Collections
             return Count != startCount;
         }
 
+        /// <summary>
+        /// Выполняет удаление из дерева.
+        /// </summary>
+        /// <param name="node">Узел.</param>
+        /// <param name="item">Элемент.</param>
+        /// <returns>Узел, который теперь является головным.</returns>
         private BinaryTreeNode Remove(BinaryTreeNode node, T item)
         {
             if (node == null)
@@ -165,6 +211,11 @@ namespace VSU.Collections
             return node;
         }
 
+        /// <summary>
+        /// Выполняет удаление минимального узла.
+        /// </summary>
+        /// <param name="node">Узел.</param>
+        /// <returns>Узел, который теперь является головным.</returns>
         private static BinaryTreeNode RemoveMinElement(BinaryTreeNode node)
         {
             if (node.LeftChild == null)

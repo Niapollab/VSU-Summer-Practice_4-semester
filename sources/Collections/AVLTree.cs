@@ -5,26 +5,50 @@ using System.Linq;
 
 namespace VSU.Collections
 {
-    public sealed partial class AVLTree<T> : ICollection<T>, ICloneable
+    /// <summary>
+    /// Представляет класс AVL-Дерева.
+    /// </summary>
+    /// <typeparam name="T">Тип элемента.</typeparam>
+    public sealed partial class AVLTree<T> : ICollection<T>
     {
+        /// <summary>
+        /// Корень.
+        /// </summary>
         private AVLTreeNode _root;
 
+        /// <summary>
+        /// Правило сравнения элементов.
+        /// </summary>
         private readonly Comparer<T> _comparer;
 
+        /// <summary>
+        /// Корень.
+        /// </summary>
         public ITreeNode<T> Root => _root;
 
         public int Count { get; private set; }
 
         public bool IsReadOnly => false;
 
+        /// <summary>
+        /// Является ли дерево пустым.
+        /// </summary>
         public bool IsEmpty => _root == null;
 
+        /// <summary>
+        /// Инициализирует класс AVL-Дерева.
+        /// </summary>
+        /// <param name="comparer">Правило сравнения элементов.</param>
         public AVLTree(Comparer<T> comparer = null)
         {
             _comparer = comparer ?? Comparer<T>.Default;
             Clear();
         }
 
+        /// <summary>
+        /// Инициализирует класс AVL-Дерева.
+        /// </summary>
+        /// <param name="comparison">Правило сравнения элементов.</param>
         public AVLTree(Comparison<T> comparison) : this(Comparer<T>.Create(comparison))
         {
 
@@ -45,6 +69,11 @@ namespace VSU.Collections
         public bool Contains(T item)
             => Find(item) != null;
 
+        /// <summary>
+        /// Выполняет поиск узла в дереве и возвращает его, если оно найдено. Во всех остальных случаях возвращает null.
+        /// </summary>
+        /// <param name="item">Элемент.</param>
+        /// <returns>Узел в дереве.</returns>
         public ITreeNode<T> Find(T item)
         {
             AVLTreeNode currentNode = _root;
@@ -80,6 +109,10 @@ namespace VSU.Collections
                 array[arrayIndex++] = element;
         }
 
+        /// <summary>
+        /// Перечисляет все узлы дерева в порядке их возрастания относительно правила сравнения.
+        /// </summary>
+        /// <returns>Перечисление всех узлов.</returns>
         private IEnumerable<AVLTreeNode> EnumerateAllNodes()
         {
             if (!IsEmpty)
@@ -119,12 +152,26 @@ namespace VSU.Collections
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
 
+        /// <summary>
+        /// Возвращет высоту в узле.
+        /// </summary>
+        /// <param name="node">Узел.</param>
+        /// <returns>Высота в узле.</returns>
         private static byte GetHeight(AVLTreeNode node)
             => node?.Height ?? 0;
 
+        /// <summary>
+        /// Вычисляет степень сбалансированности между двумя поддеревьями узла.
+        /// </summary>
+        /// <param name="node">Узел.</param>
+        /// <returns>Степень сбалансированности между двумя поддеревьями.</returns>
         private static int GetBalanceFactor(AVLTreeNode node)
             => GetHeight(node.RightChild) - GetHeight(node.LeftChild);
 
+        /// <summary>
+        /// Исправляет высоту в узле.
+        /// </summary>
+        /// <param name="node">Узел.</param>
         private static void FixHeight(AVLTreeNode node)
         {
             byte hl = GetHeight(node.LeftChild);
@@ -132,6 +179,11 @@ namespace VSU.Collections
             node.Height = (byte)((hl > hr ? hl : hr) + 1);
         }
 
+        /// <summary>
+        /// Выполянет правый поворот.
+        /// </summary>
+        /// <param name="node">Узел, вокруг которого совершается поворот.</param>
+        /// <returns>Узел, который теперь является головным.</returns>
         private static AVLTreeNode RightRotate(AVLTreeNode node)
         {
             AVLTreeNode temp = node.LeftChild;
@@ -144,6 +196,11 @@ namespace VSU.Collections
             return temp;
         }
 
+        /// <summary>
+        /// Выполянет левый поворот.
+        /// </summary>
+        /// <param name="node">Узел, вокруг которого совершается поворот.</param>
+        /// <returns>Узел, который теперь является головным.</returns>
         private static AVLTreeNode LeftRotate(AVLTreeNode node)
         {
             AVLTreeNode temp = node.RightChild;
@@ -156,6 +213,11 @@ namespace VSU.Collections
             return temp;
         }
 
+        /// <summary>
+        /// Выполняет балансировку дерева.
+        /// </summary>
+        /// <param name="node">Узел, вокруг которого совершается поворот.</param>
+        /// <returns>Узел, который теперь является головным.</returns>
         private static AVLTreeNode Balance(AVLTreeNode node)
         {
             FixHeight(node);
@@ -174,6 +236,12 @@ namespace VSU.Collections
             return node;
         }
 
+        /// <summary>
+        /// Выполянет вставку в дерево.
+        /// </summary>
+        /// <param name="node">Текущее рассматриваемое поддерево.</param>
+        /// <param name="item">Элемент для вставки.</param>
+        /// <returns>Узел, который теперь является головным.</returns>
         private AVLTreeNode Insert(AVLTreeNode node, T item)
         {
             if (node == null)
@@ -187,6 +255,11 @@ namespace VSU.Collections
             return Balance(node);
         }
 
+        /// <summary>
+        /// Выполняет удаление минимального узла.
+        /// </summary>
+        /// <param name="node">Узел.</param>
+        /// <returns>Узел, который теперь является головным.</returns>
         private static AVLTreeNode RemoveMinElement(AVLTreeNode node)
         {
             if (node.LeftChild == null)
@@ -196,6 +269,12 @@ namespace VSU.Collections
             return Balance(node);
         }
 
+        /// <summary>
+        /// Выполняет удаление из дерева.
+        /// </summary>
+        /// <param name="node">Узел.</param>
+        /// <param name="item">Элемент.</param>
+        /// <returns>Узел, который теперь является головным.</returns>
         private AVLTreeNode Remove(AVLTreeNode node, T item)
         {
             if (node == null)
@@ -228,16 +307,6 @@ namespace VSU.Collections
             }
 
             return Balance(node);
-        }
-
-        public object Clone()
-        {
-            var copy = new AVLTree<T>(_comparer);
-
-            foreach (var element in this)
-                copy.Add(element);
-
-            return copy;
         }
     }
 }

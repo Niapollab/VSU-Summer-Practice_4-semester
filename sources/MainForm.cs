@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 using VSU.Collections;
 using VSU.Models;
@@ -13,13 +14,13 @@ namespace VSU
     {
         private readonly ITaskConfigure<Student>[] _configures;
         private readonly CachedStateManager _cachePolicy;
-        private readonly StudentList _list;
+        private readonly BindingList<Student> _list;
 
         public MainForm()
         {
             InitializeComponent();
             _cachePolicy = new CachedStateManager();
-            _list = new StudentList();
+            _list = new BindingList<Student>();
             _configures = new ITaskConfigure<Student>[]
             {
                 new DynamicList1ViewConfigurer(_cachePolicy.DynamicList1, dynamicChain1View),

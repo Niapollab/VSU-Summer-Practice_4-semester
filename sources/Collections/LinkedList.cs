@@ -5,29 +5,55 @@ using System.Linq;
 
 namespace VSU.Collections
 {
+    /// <summary>
+    /// Представляет класс линейного односвязного списка.
+    /// </summary>
+    /// <typeparam name="T">Тип элемента.</typeparam>
     public sealed partial class LinkedList<T> : ICollection<T>, IReadOnlyCollection<T>
     {
+        /// <summary>
+        /// Правило определения эквивалентности.
+        /// </summary>
         private readonly IEqualityComparer<T> _equalityComparer;
+
+        /// <summary>
+        /// Голова списка.
+        /// </summary>
         private LinkedListNode _head;
 
         public int Count { get; private set; }
 
         public bool IsReadOnly => false;
 
+        /// <summary>
+        /// Голова списка.
+        /// </summary>
         public ILinkedListNode<T> Head => _head;
 
+        /// <summary>
+        /// Является ли список пустым.
+        /// </summary>
         public bool IsEmpty()
             => _head == default;
 
         public void Add(T item)
             => AddAfter(item);
 
+        /// <summary>
+        /// Инициализирует класс линейного односвязного списка.
+        /// </summary>
+        /// <param name="equalityComparer">Правило определения эквивалентности.</param>
         public LinkedList(IEqualityComparer<T> equalityComparer = default)
         {
             _equalityComparer = equalityComparer ?? EqualityComparer<T>.Default;
             Clear();
         }
 
+        /// <summary>
+        /// Инициализирует класс линейного односвязного списка с заданным элементом.
+        /// </summary>
+        /// <param name="element">Элемент.</param>
+        /// <param name="equalityComparer">Правило определения эквивалентности.</param>
         public LinkedList(T element, IEqualityComparer<T> equalityComparer = default)
             : this(equalityComparer)
         {
@@ -35,6 +61,12 @@ namespace VSU.Collections
             Count = 1;
         }
 
+        /// <summary>
+        /// Добавляет новый узел со значением перед заданным.
+        /// </summary>
+        /// <param name="item">Значение.</param>
+        /// <param name="node">Узел.</param>
+        /// <returns>Новый узел.</returns>
         public ILinkedListNode<T> AddBefore(T item, ILinkedListNode<T> node = default)
         {
             if (node != null && node is not LinkedListNode)
@@ -58,6 +90,12 @@ namespace VSU.Collections
             return newNode;
         }
 
+        /// <summary>
+        /// Добавляет новый узел со значением после заданного.
+        /// </summary>
+        /// <param name="item">Значение.</param>
+        /// <param name="node">Узел.</param>
+        /// <returns>Новый узел.</returns>
         public ILinkedListNode<T> AddAfter(T item, ILinkedListNode<T> node = default)
         {
             if (node != null && node is not LinkedListNode)
@@ -97,6 +135,9 @@ namespace VSU.Collections
                 array[arrayIndex++] = element;
         }
 
+        /// <summary>
+        /// Возвращает перечисление всех узлов односвязного списка.
+        /// </summary>
         public IEnumerable<ILinkedListNode<T>> GetNodeEnumerable()
         {
             ILinkedListNode<T> node = _head;
