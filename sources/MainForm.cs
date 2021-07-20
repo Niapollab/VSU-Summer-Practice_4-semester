@@ -24,8 +24,8 @@ namespace VSU
             {
                 new DynamicList1ViewConfigurer(_cachePolicy.DynamicList1, dynamicChain1View),
                 new DynamicList2ViewConfigurer(_cachePolicy.DynamicList2, dynamicChain2View),
-                null,
-                null,
+                new BinaryTreeViewConfigurer(_cachePolicy.BinarySearchTree, binaryTreeView),
+                new AVLTreeViewConfigurer(_cachePolicy.AVLTree, avlTreeView),
                 new BestStudentsConfigurer(_cachePolicy.BestList, bestStudentsView)
             };
             studentsListView.DataSource = _list;

@@ -48,17 +48,21 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.bestStudentsView = new System.Windows.Forms.ListView();
+            this.secondnameColumnBS = new System.Windows.Forms.ColumnHeader();
+            this.marksColumnBS = new System.Windows.Forms.ColumnHeader();
             this.openFileButton = new System.Windows.Forms.Button();
             this.saveFileButton = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.bestStudentsView = new System.Windows.Forms.ListView();
-            this.secondnameColumnBS = new System.Windows.Forms.ColumnHeader();
-            this.marksColumnBS = new System.Windows.Forms.ColumnHeader();
+            this.binaryTreeView = new System.Windows.Forms.TreeView();
+            this.avlTreeView = new System.Windows.Forms.TreeView();
             this.mainTabControl.SuspendLayout();
             this.tabPage0.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -219,6 +223,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.binaryTreeView);
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -229,6 +234,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.avlTreeView);
             this.tabPage4.Location = new System.Drawing.Point(4, 24);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(595, 178);
@@ -246,6 +252,30 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Лучшие студенты";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // bestStudentsView
+            // 
+            this.bestStudentsView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.secondnameColumnBS,
+            this.marksColumnBS});
+            this.bestStudentsView.FullRowSelect = true;
+            this.bestStudentsView.HideSelection = false;
+            this.bestStudentsView.Location = new System.Drawing.Point(3, 3);
+            this.bestStudentsView.Name = "bestStudentsView";
+            this.bestStudentsView.Size = new System.Drawing.Size(589, 172);
+            this.bestStudentsView.TabIndex = 6;
+            this.bestStudentsView.UseCompatibleStateImageBehavior = false;
+            this.bestStudentsView.View = System.Windows.Forms.View.Details;
+            // 
+            // secondnameColumnBS
+            // 
+            this.secondnameColumnBS.Text = "Фамилия";
+            this.secondnameColumnBS.Width = 100;
+            // 
+            // marksColumnBS
+            // 
+            this.marksColumnBS.Text = "Средний балл";
+            this.marksColumnBS.Width = 482;
             // 
             // openFileButton
             // 
@@ -280,29 +310,19 @@
             this.saveFileDialog.Filter = "JSON файл (*.json)|*.json|Все файлы (*.*)|*.*";
             this.saveFileDialog.RestoreDirectory = true;
             // 
-            // bestStudentsView
+            // binaryTreeView
             // 
-            this.bestStudentsView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.secondnameColumnBS,
-            this.marksColumnBS});
-            this.bestStudentsView.FullRowSelect = true;
-            this.bestStudentsView.HideSelection = false;
-            this.bestStudentsView.Location = new System.Drawing.Point(3, 3);
-            this.bestStudentsView.Name = "bestStudentsView";
-            this.bestStudentsView.Size = new System.Drawing.Size(589, 172);
-            this.bestStudentsView.TabIndex = 6;
-            this.bestStudentsView.UseCompatibleStateImageBehavior = false;
-            this.bestStudentsView.View = System.Windows.Forms.View.Details;
+            this.binaryTreeView.Location = new System.Drawing.Point(3, 3);
+            this.binaryTreeView.Name = "binaryTreeView";
+            this.binaryTreeView.Size = new System.Drawing.Size(589, 172);
+            this.binaryTreeView.TabIndex = 0;
             // 
-            // secondnameColumnBS
+            // avlTreeView
             // 
-            this.secondnameColumnBS.Text = "Фамилия";
-            this.secondnameColumnBS.Width = 100;
-            // 
-            // marksColumnBS
-            // 
-            this.marksColumnBS.Text = "Средний балл";
-            this.marksColumnBS.Width = 482;
+            this.avlTreeView.Location = new System.Drawing.Point(3, 3);
+            this.avlTreeView.Name = "avlTreeView";
+            this.avlTreeView.Size = new System.Drawing.Size(589, 172);
+            this.avlTreeView.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -322,6 +342,8 @@
             this.tabPage0.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -354,8 +376,9 @@
         private System.Windows.Forms.ColumnHeader marksColumnDC2;
         private System.Windows.Forms.ListView bestStudentsView;
         private System.Windows.Forms.ColumnHeader secondnameColumnBS;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader marksColumnBS;
+        private System.Windows.Forms.TreeView binaryTreeView;
+        private System.Windows.Forms.TreeView avlTreeView;
     }
 }
 

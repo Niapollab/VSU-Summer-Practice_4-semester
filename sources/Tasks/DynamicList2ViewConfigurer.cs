@@ -24,7 +24,7 @@ namespace VSU.Tasks
                 _view.BeginUpdate();
                 _view.Items.Clear();
 
-                var list = new SortedLinkedList<TaskStudent>();
+                var list = new SortedLinkedList<TaskStudent>((x, y) => y.CompareTo(x));
 
                 foreach (Student student in collection)
                     list.Add(new TaskStudent(student));
