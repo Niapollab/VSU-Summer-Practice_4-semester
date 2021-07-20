@@ -11,7 +11,10 @@ namespace VSU.Collections
         private LinkedListNode _head;
 
         public int Count { get; private set; }
+
         public bool IsReadOnly => false;
+
+        public ILinkedListNode<T> Head => _head;
 
         public bool IsEmpty()
             => _head == default;
@@ -119,6 +122,7 @@ namespace VSU.Collections
                 if (_equalityComparer.Equals(_head.Value, item))
                 {
                     _head = _head.Next;
+                    --Count;
                     return true;
                 }
                 else
@@ -132,6 +136,7 @@ namespace VSU.Collections
                         LinkedListNode forDel = temp.Next;
                         temp.Next = temp.Next.Next;
                         forDel.Next = null;
+                        --Count;
                         return true;
                     }
                 }

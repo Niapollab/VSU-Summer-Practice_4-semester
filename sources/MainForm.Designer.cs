@@ -39,12 +39,10 @@
             this.addStudentButton = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dynamicChain1View = new System.Windows.Forms.ListView();
-            this.nameColumnDC1 = new System.Windows.Forms.ColumnHeader();
-            this.secondnameColumnC2 = new System.Windows.Forms.ColumnHeader();
+            this.secondnameColumnC1 = new System.Windows.Forms.ColumnHeader();
             this.marksColumnDC1 = new System.Windows.Forms.ColumnHeader();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dynamicChain2View = new System.Windows.Forms.ListView();
-            this.nameColumnDC2 = new System.Windows.Forms.ColumnHeader();
             this.secondnameColumnDC2 = new System.Windows.Forms.ColumnHeader();
             this.marksColumnDC2 = new System.Windows.Forms.ColumnHeader();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -54,10 +52,14 @@
             this.saveFileButton = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.bestStudentsView = new System.Windows.Forms.ListView();
+            this.secondnameColumnBS = new System.Windows.Forms.ColumnHeader();
+            this.marksColumnBS = new System.Windows.Forms.ColumnHeader();
             this.mainTabControl.SuspendLayout();
             this.tabPage0.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTabControl
@@ -159,8 +161,7 @@
             // dynamicChain1View
             // 
             this.dynamicChain1View.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.nameColumnDC1,
-            this.secondnameColumnC2,
+            this.secondnameColumnC1,
             this.marksColumnDC1});
             this.dynamicChain1View.FullRowSelect = true;
             this.dynamicChain1View.HideSelection = false;
@@ -171,20 +172,15 @@
             this.dynamicChain1View.UseCompatibleStateImageBehavior = false;
             this.dynamicChain1View.View = System.Windows.Forms.View.Details;
             // 
-            // nameColumnDC1
+            // secondnameColumnC1
             // 
-            this.nameColumnDC1.Text = "Имя";
-            this.nameColumnDC1.Width = 100;
-            // 
-            // secondnameColumnC2
-            // 
-            this.secondnameColumnC2.Text = "Фамилия";
-            this.secondnameColumnC2.Width = 100;
+            this.secondnameColumnC1.Text = "Фамилия";
+            this.secondnameColumnC1.Width = 100;
             // 
             // marksColumnDC1
             // 
             this.marksColumnDC1.Text = "Средний балл";
-            this.marksColumnDC1.Width = 382;
+            this.marksColumnDC1.Width = 482;
             // 
             // tabPage2
             // 
@@ -200,7 +196,6 @@
             // dynamicChain2View
             // 
             this.dynamicChain2View.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.nameColumnDC2,
             this.secondnameColumnDC2,
             this.marksColumnDC2});
             this.dynamicChain2View.FullRowSelect = true;
@@ -212,11 +207,6 @@
             this.dynamicChain2View.UseCompatibleStateImageBehavior = false;
             this.dynamicChain2View.View = System.Windows.Forms.View.Details;
             // 
-            // nameColumnDC2
-            // 
-            this.nameColumnDC2.Text = "Имя";
-            this.nameColumnDC2.Width = 100;
-            // 
             // secondnameColumnDC2
             // 
             this.secondnameColumnDC2.Text = "Фамилия";
@@ -225,7 +215,7 @@
             // marksColumnDC2
             // 
             this.marksColumnDC2.Text = "Средний балл";
-            this.marksColumnDC2.Width = 382;
+            this.marksColumnDC2.Width = 482;
             // 
             // tabPage3
             // 
@@ -248,6 +238,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.bestStudentsView);
             this.tabPage5.Location = new System.Drawing.Point(4, 24);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -289,6 +280,30 @@
             this.saveFileDialog.Filter = "JSON файл (*.json)|*.json|Все файлы (*.*)|*.*";
             this.saveFileDialog.RestoreDirectory = true;
             // 
+            // bestStudentsView
+            // 
+            this.bestStudentsView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.secondnameColumnBS,
+            this.marksColumnBS});
+            this.bestStudentsView.FullRowSelect = true;
+            this.bestStudentsView.HideSelection = false;
+            this.bestStudentsView.Location = new System.Drawing.Point(3, 3);
+            this.bestStudentsView.Name = "bestStudentsView";
+            this.bestStudentsView.Size = new System.Drawing.Size(589, 172);
+            this.bestStudentsView.TabIndex = 6;
+            this.bestStudentsView.UseCompatibleStateImageBehavior = false;
+            this.bestStudentsView.View = System.Windows.Forms.View.Details;
+            // 
+            // secondnameColumnBS
+            // 
+            this.secondnameColumnBS.Text = "Фамилия";
+            this.secondnameColumnBS.Width = 100;
+            // 
+            // marksColumnBS
+            // 
+            this.marksColumnBS.Text = "Средний балл";
+            this.marksColumnBS.Width = 482;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -307,6 +322,7 @@
             this.tabPage0.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -331,13 +347,15 @@
         private System.Windows.Forms.ColumnHeader nameColumn;
         private System.Windows.Forms.ColumnHeader marksColumn;
         private System.Windows.Forms.ListView dynamicChain1View;
-        private System.Windows.Forms.ColumnHeader nameColumnDC1;
-        private System.Windows.Forms.ColumnHeader secondnameColumnC2;
+        private System.Windows.Forms.ColumnHeader secondnameColumnC1;
         private System.Windows.Forms.ColumnHeader marksColumnDC1;
         private System.Windows.Forms.ListView dynamicChain2View;
-        private System.Windows.Forms.ColumnHeader nameColumnDC2;
         private System.Windows.Forms.ColumnHeader secondnameColumnDC2;
         private System.Windows.Forms.ColumnHeader marksColumnDC2;
+        private System.Windows.Forms.ListView bestStudentsView;
+        private System.Windows.Forms.ColumnHeader secondnameColumnBS;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader marksColumnBS;
     }
 }
 

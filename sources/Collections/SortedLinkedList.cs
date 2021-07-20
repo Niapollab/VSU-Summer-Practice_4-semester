@@ -1,106 +1,69 @@
 ﻿using System;
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace VSU.Collections
 {
-    /// <summary>
-    /// Представляет класс односвязного линейного списка с сортировкой при добавлении элементов.
-    /// </summary>
-    /// <typeparam name="T">Тип элементов списка.</typeparam>
-    public sealed partial class SortedLinkedList<T> : ICollection<T>, IReadOnlyCollection<T>
+    public sealed class SortedLinkedList<T> : ICollection<T>, IReadOnlyCollection<T>
     {
-        /// <summary>
-        /// Голова односвязного списка.
-        /// </summary>
-        private SortedLinkedListNode _head;
+        private readonly LinkedList<T> _list;
+        private readonly IComparer<T> _comparer;
 
-        /// <summary>
-        /// Правила сравнения элементов при сортировке списка.
-        /// </summary>
-        private readonly Comparer<T> _comparer;
-
-        /// <summary>
-        /// Правила сравнения элементов при поиске в списке.
-        /// </summary>
-        private readonly EqualityComparer<T> _equalityComparer;
-
-        /// <summary>
-        /// Инициализирует класс односвязного линейного списка с сортировкой при добавлении элементов.
-        /// </summary>
-        /// <param name="comparer">Правила сравнения элементов при сортировке списка.</param>
-        /// <param name="equalityComparer">Правила сравнения элементов при поиске в списке.</param>
-        public SortedLinkedList(Comparer<T> comparer = null, EqualityComparer<T> equalityComparer = null)
+        public SortedLinkedList(Comparer<T> comparer = default, EqualityComparer<T> equalityComparer = default)
         {
-            Clear();
+            _list = new LinkedList<T>(equalityComparer);
             _comparer = comparer ?? Comparer<T>.Default;
-            _equalityComparer = equalityComparer ?? EqualityComparer<T>.Default;
         }
 
-        /// <summary>
-        /// Инициализирует класс односвязного линейного списка с сортировкой при добавлении элементов.
-        /// </summary>
-        /// <param name="comparison">Правила сравнения элементов при сортировке списка.</param>
-        /// <param name="equalityComparer">Правила сравнения элементов при поиске в списке.</param>
-        public SortedLinkedList(Comparison<T> comparison, EqualityComparer<T> equalityComparer = null) : this(Comparer<T>.Create(comparison), equalityComparer) 
+        public SortedLinkedList(Comparison<T> comparison, EqualityComparer<T> equalityComparer = default)
+            : this(Comparer<T>.Create(comparison), equalityComparer)
         {
 
         }
 
-        public int Count { get; private set; }
+        public int Count => _list.Count;
 
-        public bool IsReadOnly => false;
+        public bool IsReadOnly => _list.IsReadOnly;
 
         public bool IsEmpty()
-            => _head == null;
+            => _list.IsEmpty();
 
         public void Add(T item)
         {
-            throw new NotImplementedException();
+            if (IsEmpty())
+                _list.AddBefore(item);
+            else
+            {
+                if (_comparer.Compare(_list.Head.Value, item) >= 0)
+                    _list.AddBefore(item);
+                else
+                {
+                    ILinkedListNode<T> temp = _list.Head;
+                    while (temp.Next != null && _comparer.Compare(temp.Next.Value, item) < 0)
+                        temp = temp.Next;
+                    _list.AddAfter(item, temp);
+                }
+            }
         }
 
         public void Clear()
-        {
-            _head = null;
-            Count = 0;
-        }
+            => _list.Clear();
 
         public bool Contains(T item)
-            => ((IEnumerable<T>)this).Contains(item, _equalityComparer);
+            => _list.Contains(item);
 
         public void CopyTo(T[] array, int arrayIndex)
-        {
-            throw new NotImplementedException();
-        }
+            => _list.CopyTo(array, arrayIndex);
 
         public IEnumerable<ILinkedListNode<T>> GetNodeEnumerable()
-        {
-            ILinkedListNode<T> node = _head;
-            while (node != null)
-            {
-                yield return node;
-                node = node.Next;
-            }
-        }
+            => _list.GetNodeEnumerable();
 
         public IEnumerator<T> GetEnumerator()
-            => GetNodeEnumerable()
-                .Select(node => node.Value)
-                .GetEnumerator();
+            => _list.GetEnumerator();
 
         public bool Remove(T item)
-        {
-            if (!IsEmpty())
-            {
-                ILinkedListNode<T> firstEqualsToItem = GetNodeEnumerable().FirstOrDefault((element) => _equalityComparer.Equals(element.Value, item));
-                if (firstEqualsToItem != null)
-                {
-                    throw new NotImplementedException();
-                }
-            }
-            return false;
-        }
+            => _list.Remove(item);
 
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();

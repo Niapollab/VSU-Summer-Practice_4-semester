@@ -45,7 +45,7 @@ namespace VSU.Tasks
                 }
 
                 foreach (TaskStudent taskStudent in list)
-                    _view.Items.Add(new ListViewItem(new string[] { taskStudent.FirstName, taskStudent.SecondName, taskStudent.AverageMark.ToString() }));
+                    _view.Items.Add(new ListViewItem(new string[] { taskStudent.SecondName, taskStudent.AverageMark.ToString() }));
 
                 _view.EndUpdate();
                 _state.Cached = true;

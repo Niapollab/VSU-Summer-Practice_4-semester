@@ -20,10 +20,14 @@ namespace VSU
             InitializeComponent();
             _cachePolicy = new CachedStateManager();
             _list = new StudentList();
-            _configures = new[]
+            _configures = new ITaskConfigure<Student>[]
             {
-                new DynamicList1ViewConfigurer(_cachePolicy.DynamicList1, dynamicChain1View)
-            };    
+                new DynamicList1ViewConfigurer(_cachePolicy.DynamicList1, dynamicChain1View),
+                new DynamicList2ViewConfigurer(_cachePolicy.DynamicList2, dynamicChain2View),
+                null,
+                null,
+                new BestStudentsConfigurer(_cachePolicy.BestList, bestStudentsView)
+            };
             studentsListView.DataSource = _list;
             _list.ListChanged += (s, e) =>
             {
@@ -77,6 +81,7 @@ namespace VSU
                     _list.Clear();
                     foreach (Student student in students)
                         _list.Add(student);
+                    mainTabControl.SelectedIndex = 0;
                 }
                 catch (Exception ex)
                 {
@@ -118,25 +123,7 @@ namespace VSU
                 || tabControl.SelectedIndex > 5)
                 return;
 
-            switch (tabControl.SelectedIndex)
-            {
-                case 1:
-                    _configures[tabControl.SelectedIndex - 1].Configure(_list);
-                    break;
-                case 2:
-                    
-                    break;
-                case 3:
-
-                    break;
-                case 4:
-
-                    break;
-                case 5:
-
-                    break;
-            }
-
+            _configures[tabControl.SelectedIndex - 1].Configure(_list);
         }
     }
 }
